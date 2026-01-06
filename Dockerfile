@@ -18,6 +18,6 @@ RUN composer install --no-dev --optimize-autoloader --no-scripts
 
 RUN chown -R www-data:www-data storage bootstrap/cache
 
-EXPOSE 9000
+EXPOSE 8000
 CMD ["php-fpm"]
 
