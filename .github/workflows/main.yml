@@ -1,0 +1,26 @@
+name: Build and deploy the project
+  on:
+    push:
+      brnachs: [ main ]
+
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: checkout
+      uses: action/checkout@v4
+
+    - name: Setup  PHP
+    uses: sonukumar/setup-php@v2
+    with:
+      php-version: 8.3
+
+      - name: Create database
+      run: touch ./database/databse.sql
+      - name: Copy .env
+      run: cp .env.test .env
+    -name: install app
+      run: composer install
+      - name: Run Migration
+        run: php artisan migrate
